@@ -14,7 +14,7 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 30
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 # OAuth2 scheme
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login")
 
 
 # Hash password
@@ -38,29 +38,15 @@ def create_access_token(data: dict, expires_delta: timedelta = None):
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
 
-# # Decode JWT token
-# def decode_token(token: str):
-#     try:
-#         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-#         username: str = payload.get("sub")
-#         if username is None:
-#             raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token")
-#         return username
-#     except jwt.PyJWTError:
-#         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token")
+# Decode JWT token
+def decode_token(token: str):
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        username: str = payload.get("sub")
+        if username is None:
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token")
+        return username
+    except jwt.PyJWTError:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token")
 
 
-# # Get current user from token
-# def get_current_user(token: str = Depends(oauth2_scheme), conn):
-#     username = decode_token(token)
-#
-#     conn = get_db_connection()
-#     cursor = conn.cursor()
-#     cursor.execute("SELECT * FROM users WHERE username = ?", (username,))
-#     user = cursor.fetchone()
-#     conn.close()
-#
-#     if user is None:
-#         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="User not found")
-#
-#     return {"id": user["id"], "username": user["username"]}
