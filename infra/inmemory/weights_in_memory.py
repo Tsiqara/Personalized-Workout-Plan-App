@@ -15,7 +15,7 @@ class WeightsInMemory:
         if weight_record.get_id() in self.weights.keys():
             raise WeightRecordAlreadyExistsError(weight_record.get_id())
 
-    def get_by_user_id(self, username: str) -> list[WeightRecord]:
+    def get_by_username(self, username: str) -> list[WeightRecord]:
         return [
             record
             for record in self.weights.values()

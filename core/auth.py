@@ -18,6 +18,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 
 # Hash password
+# repository gets already hashed password
 def hash_password(password: str) -> str:
     return pwd_context.hash(password)
 

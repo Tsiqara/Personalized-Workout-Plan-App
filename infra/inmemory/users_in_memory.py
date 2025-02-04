@@ -27,4 +27,4 @@ class UsersInMemory:
         if username not in self.users.keys():
             raise UserDoesNotExistError(username)
 
-        self.users[username].set_password(hash_password(new_password))
+        self.users[username].set_password(new_password)

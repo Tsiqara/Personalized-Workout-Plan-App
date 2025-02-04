@@ -36,7 +36,7 @@ class WeightRecordRepository(Protocol):
     def create(self, weight_record: WeightRecord) -> None:
         pass
 
-    def get_by_user_id(self, username: str) -> list[WeightRecord]:
+    def get_by_username(self, username: str) -> list[WeightRecord]:
         pass
 
     def get_latest(self, username: str) -> WeightRecord | None:

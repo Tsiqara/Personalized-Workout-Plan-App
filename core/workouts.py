@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Protocol, Union
+from typing import Protocol, Union, List
 from uuid import UUID, uuid4
 
 from core.exercises import Exercise
@@ -12,7 +12,7 @@ from core.goals import Goal
 class Workout:
     username: str
     frequency_per_week: int
-    goals: list[Goal]
+    goals: list[UUID]
     daily_duration_minutes: int
     exercises: dict[
         UUID, dict[str, Union[int, float]]
@@ -28,7 +28,7 @@ class Workout:
     def get_frequency(self) -> int:
         return self.frequency_per_week
 
-    def get_goals(self) -> list[Goal]:
+    def get_goals(self) -> list[UUID]:
         return self.goals
 
     def get_daily_duration(self) -> int:
@@ -40,14 +40,14 @@ class Workout:
     def set_frequency(self, frequency: int) -> None:
         self.frequency_per_week = frequency
 
-    def set_goals(self, goals: list[Goal]) -> None:
+    def set_goals(self, goals: list[UUID]) -> None:
         self.goals = goals
 
-    def add_goal(self, goal: Goal) -> None:
-        self.goals.append(goal)
+    def add_goal(self, goal_id: UUID) -> None:
+        self.goals.append(goal_id)
 
-    def remove_goal(self, goal: Goal) -> None:
-        self.goals.remove(goal)
+    def remove_goal(self, goal_id: UUID) -> None:
+        self.goals.remove(goal_id)
 
     def set_daily_duration(self, daily_duration: int) -> None:
         self.daily_duration_minutes = daily_duration

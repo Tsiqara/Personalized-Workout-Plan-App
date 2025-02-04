@@ -43,7 +43,7 @@ class ExerciseRepository(Protocol):
     def create(self, exercise: Exercise) -> None:
         pass
 
-    def read_one(self, exercise_id: UUID) -> Exercise:
+    def get(self, exercise_id: UUID) -> Exercise:
         pass
 
     def list(self) -> list[Exercise]:

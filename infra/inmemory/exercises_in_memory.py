@@ -15,7 +15,7 @@ class ExercisesInMemory:
 
         self.exercises[exercise.get_id()] = exercise
 
-    def read_one(self, exercise_id: UUID) -> Exercise:
+    def get(self, exercise_id: UUID) -> Exercise:
         if exercise_id not in self.exercises.keys():
             raise ExerciseDoesNotExistError(exercise_id)
 
