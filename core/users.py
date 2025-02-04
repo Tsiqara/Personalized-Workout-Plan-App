@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Protocol
 
 
@@ -23,7 +23,7 @@ class User:
 
 
 class UserRepository(Protocol):
-    def create(self, user: User) -> User:
+    def create(self, user: User) -> None:
         pass
 
     def get_by_username(self, username: str) -> User | None:

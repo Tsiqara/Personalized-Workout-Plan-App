@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
-from uuid import UUID, uuid4
-from typing import Optional, Protocol
 from datetime import date
+from typing import Optional, Protocol
+from uuid import UUID, uuid4
 
 
 @dataclass
@@ -17,7 +17,7 @@ class Goal:
     def get_id(self) -> UUID:
         return self.id
 
-    def get_user_id(self) -> str:
+    def get_username(self) -> str:
         return self.username
 
     def get_goal_type(self) -> str:
@@ -55,13 +55,16 @@ class Goal:
 
 
 class GoalRepository(Protocol):
+    def create(self, goal: Goal) -> None:
+        pass
+
     def get(self, goal_id: UUID) -> Goal:
         pass
 
     def get_by_username(self, username: str) -> list[Goal]:
         pass
 
-    def update_progress(self, new_value: float) -> None:
+    def update(self, goal_id: UUID, new_goal: Goal) -> None:
         pass
 
     def delete(self, goal_id: UUID) -> None:

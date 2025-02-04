@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from typing import Protocol, Union
 from uuid import UUID, uuid4
-from typing import Union, Protocol
 
 from core.exercises import Exercise
 from core.goals import Goal
@@ -80,8 +80,14 @@ class WorkoutRepository(Protocol):
     def create(self, workout: Workout) -> None:
         pass
 
-    def get(self, workout_id: int) -> Workout:
+    def get(self, workout_id: UUID) -> Workout:
         pass
 
     def get_by_username(self, username: str) -> list[Workout]:
+        pass
+
+    def update(self, workout_id: UUID, workout: Workout) -> None:
+        pass
+
+    def delete(self, workout_id: UUID) -> None:
         pass
