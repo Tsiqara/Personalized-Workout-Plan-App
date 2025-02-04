@@ -1,0 +1,5 @@
+fastapi==0.109.1
+uvicorn==0.25.0
+pyjwt==2.7.0
+passlib==1.7.4
+python-dotenv==1.0.1
