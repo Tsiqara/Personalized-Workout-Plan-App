@@ -113,7 +113,7 @@ def get_current_user(users: UserRepositoryDependable, blacklist: BlacklistedUser
     """
     Dependency to get the current logged-in user from the JWT token.
     """
-    if token in blacklist:
+    if blacklist.contains_token(token):
         return JSONResponse(
             status_code=401,
             content={

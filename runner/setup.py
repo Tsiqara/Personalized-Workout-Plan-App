@@ -23,8 +23,6 @@ def init_app() -> FastAPI:
     app = FastAPI()
     app.include_router(user_api)
     app.include_router(exercise_api)
-    # app.include_router(transaction_api)
-    # app.include_router(statistic_api)
 
     # comment line below when you are using test-mode
     # os.environ["REPOSITORY_KIND"] = "sqlite"
