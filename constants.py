@@ -6,7 +6,7 @@ ERROR_RESPONSES: dict[int, Any] = {
     401: {
         "content": {
             "application/json": {
-                "example": {"error": {"message": "Invalid admin API key <key>"}}
+                "example": {"error": {"message": "Invalid API key <key>"}}
             }
         }
     },
