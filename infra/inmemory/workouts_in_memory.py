@@ -6,7 +6,7 @@ from core.workouts import Workout
 
 
 @dataclass
-class WorkoutInMemory:
+class WorkoutsInMemory:
     workouts: dict[UUID, Workout] = field(default_factory=dict)
 
     def create(self, workout: Workout) -> None:

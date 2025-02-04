@@ -8,7 +8,7 @@ from infra.sqlite.database_sqlite import SqliteDatabase
 
 
 @dataclass
-class WorkoutSqlite:
+class WorkoutsSqlite:
     sqlite_database: SqliteDatabase
 
     def create(self, workout: Workout) -> None:
