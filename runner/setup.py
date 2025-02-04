@@ -3,7 +3,9 @@ import os
 from fastapi import FastAPI
 
 from constants import DB_PATH
+from infra.fastapi.exercises import exercise_api
 from infra.fastapi.users import user_api
+from infra.inmemory.blacklist_tokens import BlacklistTokensInMemory
 from infra.inmemory.exercises_in_memory import ExercisesInMemory
 from infra.inmemory.goals_in_memory import GoalsInMemory
 from infra.inmemory.users_in_memory import UsersInMemory
@@ -20,7 +22,7 @@ from infra.sqlite.workouts_sqlite import WorkoutsSqlite
 def init_app() -> FastAPI:
     app = FastAPI()
     app.include_router(user_api)
-    # app.include_router(wallet_api)
+    app.include_router(exercise_api)
     # app.include_router(transaction_api)
     # app.include_router(statistic_api)
 
@@ -40,5 +42,8 @@ def init_app() -> FastAPI:
         app.state.workouts = WorkoutsInMemory()
         app.state.goals = GoalsInMemory()
         app.state.weights = WeightsInMemory()
+
+    app.state.blacklist = BlacklistTokensInMemory()
+
 
     return app
