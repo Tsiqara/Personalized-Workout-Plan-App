@@ -25,6 +25,7 @@ class WorkoutsSqlite:
         frequency = workout.get_frequency()
         daily_duration = workout.get_daily_duration()
 
+        # TODO change this code to make sure all insertions are done in single transaction
         query2 = (
             "INSERT INTO workouts (ID, username, frequency_per_week, daily_duration_minutes)"
             "VALUES (?, ?, ?, ?);"
